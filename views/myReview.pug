@@ -1,0 +1,15 @@
+extends base 
+
+block content
+  .my--reviews__list
+    each review in reviews
+      .my--reviews__item
+        .my--reviews__avatar
+          img.my--reviews__avatar-img(src=`/img/users/${review.user.photo}`, alt=`${review.user.name}`)
+          h6.my--reviews__user= review.user.name
+        p.my--reviews__tour-name= review.tour.name
+        .reviews__rating
+          each star in [1, 2, 3, 4, 5]
+            svg.reviews__star(class=`reviews__star--${review.rating >= star ? 'active' : 'inactive'}`)
+              use(xlink:href='/img/icons.svg#icon-star' width="20" height="20")
+        p.my--reviews__text= review.review
